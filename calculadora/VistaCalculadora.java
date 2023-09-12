@@ -53,12 +53,15 @@ public class VistaCalculadora extends JFrame {
     private void funcionalidad() {
         
         boton1.addActionListener((ActionEvent e) -> {
-            System.out.println("ola");
-            
+            String expresion;
+            expresion = cuadroTexto.getText();
+            PilaADT<String> pila = MetodosDelProyecto.convierteInfijaPostfija(expresion);
+            Double resp = MetodosDelProyecto.calculoPostfija(pila);
+            cuadroTexto.setText(resp.toString());
         });
         
         boton2.addActionListener((ActionEvent e) -> {
-            System.out.println("eeeee");
+            cuadroTexto.setText("");
         });
     }
 }
