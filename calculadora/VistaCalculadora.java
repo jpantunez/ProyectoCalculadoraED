@@ -30,13 +30,13 @@ public class VistaCalculadora extends JFrame {
     
     // metodo que brinda la personalizacion de la GUI
     private void personalizacion() {
+        // creacion de paneles y asignacion de GridLayout
         panelBase = new JPanel();
         panelTexto = new JPanel();
-        panelCuadroTexto = new JPanel();
-
         panelBase.setLayout(new GridLayout(1, 2));
         panelTexto.setLayout(new GridLayout(1,1) );
-
+        
+        // creacion y aplicacion de los bordes en los paneles
         bordeBase = BorderFactory.createEmptyBorder(12, 12, 12, 12);
         bordeTexto = BorderFactory.createEmptyBorder(12, 12, 0, 12);
         panelBase.setBorder(bordeBase);
