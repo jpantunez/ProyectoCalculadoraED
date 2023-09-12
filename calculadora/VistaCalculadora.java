@@ -7,7 +7,8 @@ import javax.swing.*;
 import javax.swing.border.Border;
 
 public class VistaCalculadora extends JFrame {
-
+    
+    // atributos de la GUI
     protected JPanel panelBase, panelTexto, panelCuadroTexto;
     protected JButton boton1, boton2, boton3, boton4;
     protected JButton boton5, boton6, boton7, boton8;
@@ -15,7 +16,8 @@ public class VistaCalculadora extends JFrame {
     protected JButton boton13, boton14, boton15, boton16;
     protected JTextField cuadroTexto;
     protected Border bordeBase, bordeTexto;
-
+    
+    // constructor de la GUI
     public VistaCalculadora() {
         this.setTitle("Calculadora ED 1.0");
         this.setSize(300, 150);
@@ -25,7 +27,8 @@ public class VistaCalculadora extends JFrame {
         this.funcionalidad();
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
-
+    
+    // metodo que brinda la personalizacion de la GUI
     private void personalizacion() {
         panelBase = new JPanel();
         panelTexto = new JPanel();
@@ -44,12 +47,13 @@ public class VistaCalculadora extends JFrame {
         boton2 = new JButton(); boton2.setText("Limpiar"); panelBase.add(boton2);
         cuadroTexto = new JTextField(); cuadroTexto.setText(""); panelTexto.add(cuadroTexto);
 
-        // Usar BorderLayout para organizar los paneles en el JFrame
+        // organizacion de los paneles por medio de Border Layout
         getContentPane().setLayout(new BorderLayout());
         getContentPane().add(panelTexto, BorderLayout.NORTH);
         getContentPane().add(panelBase, BorderLayout.CENTER);
     }
-
+    
+    // metodo que brinda la funcionalidad de la GUI
     private void funcionalidad() {
         
         boton1.addActionListener((ActionEvent e) -> {
