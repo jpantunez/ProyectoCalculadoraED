@@ -1,90 +1,82 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package calculadora;
+package proyectocalculadoraed;
 
-/**
- *
- * @author joseantunez
- */
-public class PilaA<T> implements PilaADT<T>{
-    private T[] pila;
+public class PilaA <T> implements PilaADT<T>{
+    
     private int tope;
-    private final int MAX_PILA=20;
+    private T[] datos;
+    private final int MAX = 20;
     
     public PilaA(){
-        pila=(T[]) new Object[MAX_PILA]; 
-        tope=-1;
+        datos = (T[]) new Object[MAX];
+        tope = -1; // indica pila vacia
     }
-    
+   
     public PilaA(int max){
-        pila=(T[]) new Object[max];
-        tope=-1;
+        datos = (T[]) new Object[max];
+        tope = -1; // indica pila vacia
     }
 
-    public void push(T dato) {
-        if(tope==pila.length-1)
+    @Override
+    public void push(T datoNuevo) {
+        if(tope == datos.length - 1){
             expande();
+        }
         tope++;
-        pila[tope]=dato;
-                
+        datos[tope] = datoNuevo;
     }
 
-    private void expande(){
-        T[] masGrande = (T[]) new Object[pila.length*2];
-        
-        for(int i=0; i<pila.length;i++)
-            masGrande[i]=pila[i];
-        pila = masGrande;
-    
-    }
-  
+    @Override
     public T pop() {
-        if(isEmpty())
-            throw new RuntimeException("La pila esta vacia");
-        T resultado = pila[tope];
+        if(this.isEmpty()){
+            throw new ExcepcionColeccionVacia("Error: la pila esta vacia");
+        }
+        T resultado = datos[tope];
+        datos[tope] = null;
         tope--;
         return resultado;
     }
 
-    
+    @Override
     public boolean isEmpty() {
         return tope == -1;
     }
 
-    
+    @Override
     public T peek() {
-        if(isEmpty())
-            throw new RuntimeException("La pila esta vacia");
-        
-        return pila[tope];
-    }
-    
-    public boolean multiPop(int n){
-        boolean resp=false;
-        int i=0;
-        
-        if(this.tope+1>=n){
-            resp=true;
-            for(i=0;i<n;i++){
-                this.pop();
-            }
+        if(this.isEmpty()){
+            throw new ExcepcionColeccionVacia("Error: la pila esta vacia");
         }
-        
-        return resp;
+        return datos[tope];
     }
     
-    //toString
+    public void expande(){
+        T[] masGrande = (T[]) new Object[datos.length * 2];
+        
+        for(int i = 0; i<= tope; i++){
+            masGrande[i] = datos[i];
+        }
+        datos = masGrande;
+    }
+    
+    // multiPop ejercicio 21 inciso B
+    @Override
+    public void multiPop(int n) {
+        if(this.tope >= n-1){
+            int i;
+            for(i=this.tope; i > this.tope-n; i--){
+                datos[i] = null;
+            }
+            this.tope = i;
+        }
+    }
+    
+    // muestra elementos de la Pila
+    @Override
     public String toString(){
-        PilaADT<T> aux = new PilaA();
-        StringBuilder sb;
-        sb=new StringBuilder();
-        
+        StringBuilder sb = new StringBuilder();
         int i;
-        
-        for(i=tope; i>=0; i--){
-            sb.append(pila[i]);
+        for(i=this.tope; i>=0; i--){
+            sb.append(datos[i]);
             sb.append("\n");
         }
         return sb.toString();
