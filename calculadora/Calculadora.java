@@ -28,33 +28,28 @@ public abstract class Calculadora {
 //1)verificar validez 
     //se verifica si es un operador o es un nÃºmero 
     
-    private static boolean esOperador(String c) {
-        char operador = c.charAt(0);
+    private static boolean esOperador(String cad) {
+        char operador = cad.charAt(0);
         boolean resp;
         resp = false; 
         
         //se plantean los casos de los operadores 
         if (operador == '+' || operador == '-' || operador == '*' || operador == '/' || operador == '^') {
             resp = true;
-            return resp; //si es alguno el resp es verdadero
-        } else {
-            return resp;
         }
     }
+
     
     
     //este mÃ©todo se introduce una cadena y trata de convertirla en nÃºmero, si lo logra boolean es true, si marca false es que pq no pudo convertirla 
-     private static boolean esNumero(String c){ //se introduce cadena 
-         boolean resp;
-         resp = false;
+     private static boolean esNumero(String cad){ //se introduce cadena 
          double numero;
          try{ //Se utiliza try y catch para convertir cadena en numero
-                numero = (Double.parseDouble(c));
-                resp = true;
-                return resp;
+                numero = (Double.parseDouble(cad));
+                return true;
             }
             catch(NumberFormatException e){
-                return resp;
+                return false;
             }
 }
      //2) convertir de infija a postFija
@@ -72,44 +67,44 @@ public abstract class Calculadora {
         for(int i = 0; i < expresion.length(); i++){ //verificado con la logitud de la expresiÃ³n introducida 
             caracter = expresion.charAt(i);
             // checa si es un numero u operador
-            if(Character.isDigit(caracter)) { //si es numero se agrega directo a la pila
-                cad = generaCad(expresion, i); //se utiliza mÃ©todo a parte para generar cadena 
-                postfija.push(cad);  //se pone agrega a pila  
-                i = i + cad.length()-1; //se incrementa iterador 
+            if(Character.isDigit(caracter)) { //verifica si es un dígito
+                cad = generaCad(expresion, i); //se llama a método genera cadena; se introduce expresión y posición 
+                postfija.push(cad);  //se agrega a pila  
+                i = i + cad.length()-1; //se modifica iterador 
             }
             else {//caso para cuando no son numeros 
                 //si es parÃ©ntesis que abre
                 if(caracter == '(') {
-                    pila.push('(');
+                    pila.push('('); //Se agrega a pila
                 }
                 else { //si es ) parentesis que cierra 
                     if(caracter == ')') {
                         while(!pila.isEmpty() && pila.peek()!='(') { //Se ejecuta mientras que la pila no este vacÃ­a y el tope es distinto de parantesia que abre 
-                            postfija.push(pila.pop()+"");
+                            postfija.push(pila.pop()+""); //Se agrega a pila
                         }
-                        if(pila.peek()=='(')
+                        if(pila.peek()=='(') //si es tope es un paréntesis que abre se elimina
                             pila.pop();
                     }
                     //Se utiliza jerarquia (potencia, mul y div, suma y resta)
-                    else{ //si es potencia
+                    else{ //caso es potencia
                         if(caracter == '^'){
                             if(!pila.isEmpty())
-                                while(!pila.isEmpty() && pila.peek()!='(' && pila.peek()!= '/' && pila.peek()!= '*' && pila.peek()!='+' && pila.peek()!='-')
-                                        postfija.push(pila.pop()+"");
-                            pila.push(caracter);
+                                while(!pila.isEmpty() && pila.peek()!='(' && pila.peek()!= '/' && pila.peek()!= '*' && pila.peek()!='+' && pila.peek()!='-') //mientras pila no esté vacía ni tenga operadores de menor jerarquia
+                                        postfija.push(pila.pop()+""); //Se agrega a la pila de postfija
+                            pila.push(caracter); //Se elimina carácter
                         }
-                        else { //si es multiplicacion o division
-                            if(caracter == '/' || caracter == '*') {
-                                if(!pila.isEmpty()) 
-                                    while(!pila.isEmpty() && pila.peek()!='(' && pila.peek()!='+' && pila.peek()!='-')
-                                        postfija.push(pila.pop()+"");
-                                pila.push(caracter);
+                        else { //caso multiplicacion o division
+                            if(caracter == '/' || caracter == '*') { //o = alguno de los 2
+                                if(!pila.isEmpty())  //si pila no está vacía
+                                    while(!pila.isEmpty() && pila.peek()!='(' && pila.peek()!='+' && pila.peek()!='-') //mientras que pila no este vacía y no se encuenten operadores de menor jerarquía
+                                        postfija.push(pila.pop()+""); //se agrega a la pila de postfija
+                                pila.push(caracter); //se elimina carácter
                             }
-                            else { //si es suma o resta
-                                if(caracter == '+' || caracter == '-') {
-                                    if(!pila.isEmpty()) 
-                                        while(!pila.isEmpty() && pila.peek()!='(')
-                                            postfija.push(pila.pop()+"");
+                            else { //caso es suma o resta
+                                if(caracter == '+' || caracter == '-') { //o = alguno de los 2
+                                    if(!pila.isEmpty())  //si no está vacía
+                                        while(!pila.isEmpty() && pila.peek()!='(') //mientras que no este vacía ni se encuentre paréntesis de apertura 
+                                            postfija.push(pila.pop()+""); //se agrega a la pila de postfija
                                     pila.push(caracter);
                                 }
                             }
@@ -119,7 +114,7 @@ public abstract class Calculadora {
             }
             
         }
-        while(!pila.isEmpty()) { //verifica parÃ©ntesis 
+        while(!pila.isEmpty()) { //verifica paréntesis 
             if(pila.peek()=='(')
                 pila.pop();
             else 
@@ -158,7 +153,7 @@ public abstract class Calculadora {
                             var1=aux.pop();
                             operadorString = pila.pop();
                             operadorChar = operadorString.charAt(0);
-                            //Se evalua por casos de las disntintas operaciones 
+                            //Se evalua por casos de las distintas operaciones 
                             //se agrega el resultado de la operacion en la pila aux
                             switch (operadorChar) {
                                 case '+':
@@ -196,7 +191,7 @@ public abstract class Calculadora {
             return resultado; //se regresa el valor acumulado de la pila 
         }
      
-     private static <T> void inviertePila(PilaADT<T> pila){
+     private static <T> void inviertePila(PilaADT<T> pila){ //se pone en arraylist para invertirse
             ArrayList<T> c = new ArrayList();
 
             while(!pila.isEmpty()){
