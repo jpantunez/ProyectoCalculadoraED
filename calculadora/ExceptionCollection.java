@@ -1,19 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package calculadora;
+package proyectocalculadoraed;
 
-/**
- *
- * @author joseantunez
- */
-public class ExceptionCollection extends RuntimeException{
-    
-    public ExceptionCollection(){
+public class ExcepcionColeccionVacia extends RuntimeException{
+
+    public ExcepcionColeccionVacia() {
     }
-    
-    public ExceptionCollection(String message){
+
+    public ExcepcionColeccionVacia(String message) {
         super(message);
-    }    
+    }
+
 }
