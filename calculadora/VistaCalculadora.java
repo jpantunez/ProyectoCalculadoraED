@@ -9,11 +9,8 @@ import javax.swing.border.Border;
 public class VistaCalculadora extends JFrame {
     
     // atributos de la GUI
-    protected JPanel panelBase, panelTexto, panelCuadroTexto;
-    protected JButton boton1, boton2, boton3, boton4;
-    protected JButton boton5, boton6, boton7, boton8;
-    protected JButton boton9, boton10, boton11, boton12;
-    protected JButton boton13, boton14, boton15, boton16;
+    protected JPanel panelBase, panelTexto;
+    protected JButton boton1, boton2;
     protected JTextField cuadroTexto;
     protected Border bordeBase, bordeTexto;
     
