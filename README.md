@@ -24,13 +24,17 @@ La calculadora realiza las siguientes operaciones:
 
 4. **Interfaz de Usuario**:
    - La calculadora tiene una interfaz simple donde el usuario puede ingresar la expresión en notación infija.
-   - Luego, la calculadora realiza la conversión y muestra el resultado en la pantalla.
+   - Luego, la calculadora realiza la conversión y muestra el resultado en el cuadro de texto de la interfaz.
+   - La interfaz incluye un botón "Calcular" para iniciar el proceso y un botón "Limpiar" para borrar el contenido del cuadro de texto y permitir el ingreso de una nueva expresión.
 
-## Uso
+## Uso de la Interfaz
 
-Para utilizar la calculadora, sigue estos pasos:
+Para utilizar la calculadora con la interfaz de usuario, sigue estos pasos:
 
 1. Ejecuta el programa Java.
-2. Ingrese la expresión matemática en notación infija cuando se solicite.
-3. La calculadora transformará la expresión a notación postfija y calculará el resultado.
-4. El resultado se mostrará en la pantalla.
+2. Ingresa la expresión matemática en notación infija en el cuadro de texto de la interfaz. Por ejemplo, puedes escribir "3 + 5 * (2 - 4)".
+3. Haz clic en el botón "Calcular". La calculadora realizará la conversión de notación infija a postfija y calculará el resultado.
+4. El resultado de la expresión se mostrará en el mismo cuadro de texto donde ingresaste la expresión. Por ejemplo, si ingresaste "3 + 5 * (2 - 4)", el resultado se mostrará como "1.0" en el cuadro de texto.
+5. Si deseas realizar un nuevo cálculo, simplemente haz clic en el botón "Limpiar" para vaciar el cuadro de texto y luego ingresa una nueva expresión.
+
+La interfaz de la Calculadora ED 1.0 es simple y eficiente para realizar cálculos matemáticos utilizando notación infija y postfija. Puedes utilizar esta calculadora para realizar operaciones matemáticas de manera rápida y precisa.
