@@ -1,7 +1,6 @@
 package proyectocalculadoraed;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class MetodosDelProyecto {
 
@@ -181,15 +180,5 @@ public class MetodosDelProyecto {
         if (!aux.isEmpty()) // Si la pila no esta vacia
             resultado = aux.pop(); // Extraer valor superior
         return resultado; // Se regresa el valor acumulado de la pila
-    }
-    
-    public static void main(String[] args) {
-        Scanner entrada = new Scanner ( System.in);
-        String expresion;
-        expresion = entrada.next();
-        PilaADT<String> pila = convierteInfijaPostfija(expresion);
-        Double resp = calculoPostfija(pila);
-        System.out.println("Resultado: "+resp);
-        entrada.close();
     }
 }
