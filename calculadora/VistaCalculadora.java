@@ -5,17 +5,18 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import javax.swing.*;
 import javax.swing.border.Border;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 public class VistaCalculadora extends JFrame {
     
     // atributos de la GUI
     protected JPanel panelBase, panelTexto;
-    protected JLabel vacio;
     protected JButton boton1, boton2, boton3, boton4;
     protected JButton boton5, boton6, boton7, boton8;
     protected JButton boton9, boton10, boton11, boton12;
     protected JButton boton13, boton14, boton15, boton16;
-    protected JButton boton17;
+    protected JButton boton17, boton18, boton19, boton20;
     protected JTextField cuadroTexto;
     protected Border bordeBase, bordeTexto;
     public static boolean syntaxErrorOccurred = false;
@@ -62,14 +63,14 @@ public class VistaCalculadora extends JFrame {
         boton14 = new JButton(); boton14.setText("2"); panelBase.add(boton14);
         boton15 = new JButton(); boton15.setText("3"); panelBase.add(boton15);
         boton16 = new JButton(); boton16.setText("+"); panelBase.add(boton16);
-        vacio = new JLabel(); vacio.setText(""); panelBase.add(vacio);
-        vacio = new JLabel(); vacio.setText(""); panelBase.add(vacio);
-        vacio = new JLabel(); vacio.setText(""); panelBase.add(vacio);
-        boton17 = new JButton(); boton17.setText("="); panelBase.add(boton17);
+        boton17 = new JButton(); boton17.setText("0"); panelBase.add(boton17);
+        boton18 = new JButton(); boton18.setText("("); panelBase.add(boton18);
+        boton19 = new JButton(); boton19.setText(")"); panelBase.add(boton19);
+        boton20 = new JButton(); boton20.setText("="); panelBase.add(boton20);
         cuadroTexto = new JTextField(); cuadroTexto.setText(""); panelTexto.add(cuadroTexto);
         cuadroTexto.setEditable(false);
 
-        // organizacion de los paneles por medio de Border Layout
+        // organizacion de los paneles usando BorderLayout
         getContentPane().setLayout(new BorderLayout());
         getContentPane().add(panelTexto, BorderLayout.NORTH);
         getContentPane().add(panelBase, BorderLayout.CENTER);
@@ -77,7 +78,123 @@ public class VistaCalculadora extends JFrame {
     
     // metodo que brinda la funcionalidad de la GUI
     private void funcionalidad() {
+        
+        // funcionalidad de los botones
+        boton1.addActionListener((ActionEvent e) -> {
+            cuadroTexto.setText("");
+            syntaxErrorOccurred = false; // Restablece la variable de control de error
+            boton20.setEnabled(true); // Habilita el boton de calcular despues de elimminar el contenido
+        });
+        
+        boton2.addActionListener((ActionEvent e) -> {
+            String p=cuadroTexto.getText().substring(0, cuadroTexto.getText().length() - 1);
+            cuadroTexto.setText(p);
+            syntaxErrorOccurred = false; // Restablece la variable de control de error
+        });
+        
+        boton3.addActionListener((ActionEvent e) -> {
+            String p=cuadroTexto.getText();
+            cuadroTexto.setText(p+"^");
+            syntaxErrorOccurred = false; // Restablece la variable de control de error
+        });
+        
+        boton4.addActionListener((ActionEvent e) -> {
+            String p=cuadroTexto.getText();
+            cuadroTexto.setText(p+"*");
+            syntaxErrorOccurred = false; // Restablece la variable de control de error
+        });
+        
+        boton5.addActionListener((ActionEvent e) -> {
+            String p=cuadroTexto.getText();
+            cuadroTexto.setText(p+"7");
+            syntaxErrorOccurred = false; // Restablece la variable de control de error
+        });
+        
+        boton6.addActionListener((ActionEvent e) -> {
+            String p=cuadroTexto.getText();
+            cuadroTexto.setText(p+"8");
+            syntaxErrorOccurred = false; // Restablece la variable de control de error
+        });
+        
+        boton7.addActionListener((ActionEvent e) -> {
+            String p=cuadroTexto.getText();
+            cuadroTexto.setText(p+"9");
+            syntaxErrorOccurred = false; // Restablece la variable de control de error
+        });
+        
+        boton8.addActionListener((ActionEvent e) -> {
+            String p=cuadroTexto.getText();
+            cuadroTexto.setText(p+"/");
+            syntaxErrorOccurred = false; // Restablece la variable de control de error
+        });
+        
+        boton9.addActionListener((ActionEvent e) -> {
+            String p=cuadroTexto.getText();
+            cuadroTexto.setText(p+"4");
+            syntaxErrorOccurred = false; // Restablece la variable de control de error
+        });
+        
+        boton10.addActionListener((ActionEvent e) -> {
+            String p=cuadroTexto.getText();
+            cuadroTexto.setText(p+"5");
+            syntaxErrorOccurred = false; // Restablece la variable de control de error
+        });
+        
+        boton11.addActionListener((ActionEvent e) -> {
+            String p=cuadroTexto.getText();
+            cuadroTexto.setText(p+"6");
+            syntaxErrorOccurred = false; // Restablece la variable de control de error
+        });
+        
+        boton12.addActionListener((ActionEvent e) -> {
+            String p=cuadroTexto.getText();
+            cuadroTexto.setText(p+"-");
+            syntaxErrorOccurred = false; // Restablece la variable de control de error
+        });
+        
+        boton13.addActionListener((ActionEvent e) -> {
+            String p=cuadroTexto.getText();
+            cuadroTexto.setText(p+"1");
+            syntaxErrorOccurred = false; // Restablece la variable de control de error
+        });
+        
+        boton14.addActionListener((ActionEvent e) -> {
+            String p=cuadroTexto.getText();
+            cuadroTexto.setText(p+"2");
+            syntaxErrorOccurred = false; // // Restablece la variable de control de error
+        });
+        
+        boton15.addActionListener((ActionEvent e) -> {
+            String p=cuadroTexto.getText();
+            cuadroTexto.setText(p+"3");
+            syntaxErrorOccurred = false; // Restablece la variable de control de error
+        });
+        
+        boton16.addActionListener((ActionEvent e) -> {
+            String p=cuadroTexto.getText();
+            cuadroTexto.setText(p+"+");
+            syntaxErrorOccurred = false; // Restablece la variable de control de error
+        });
+        
         boton17.addActionListener((ActionEvent e) -> {
+            String p=cuadroTexto.getText();
+            cuadroTexto.setText(p+"0");
+            syntaxErrorOccurred = false; // Restablece la variable de control de error
+        });
+        
+        boton18.addActionListener((ActionEvent e) -> {
+            String p=cuadroTexto.getText();
+            cuadroTexto.setText(p+"(");
+            syntaxErrorOccurred = false; // Restablece la variable de control de error
+        });
+        
+        boton19.addActionListener((ActionEvent e) -> {
+            String p=cuadroTexto.getText();
+            cuadroTexto.setText(p+")");
+            syntaxErrorOccurred = false; // Restablece la variable de control de error
+        });
+        
+        boton20.addActionListener((ActionEvent e) -> {
             
             String expresion = cuadroTexto.getText();
             PilaADT<String> pila = MetodosDelProyecto.convierteInfijaPostfija(expresion);
@@ -85,127 +202,40 @@ public class VistaCalculadora extends JFrame {
                 try {
                     Double resp = MetodosDelProyecto.calculoPostfija(pila);
                     cuadroTexto.setText(resp.toString());
-                } catch (Exception ex) {
+                }
+                catch (Exception ex) {
                     cuadroTexto.setText("Syntax Error");
                     syntaxErrorOccurred = true; // Establece la variable de control en true
-                    boton17.setEnabled(false); // Deshabilita el boton1
                 }
             }
             else{
-                cuadroTexto.setText("Syntax error");
+                cuadroTexto.setText("Syntax Error");
             }
         });
         
-        // funcionalidad de los botones
-        boton1.addActionListener((ActionEvent e) -> {
-            cuadroTexto.setText("");
-            syntaxErrorOccurred = false; // Restablece la variable de control
-            boton17.setEnabled(true); // Habilita el boton1
-        });
-        
-        boton2.addActionListener((ActionEvent e) -> {
-            String p=cuadroTexto.getText().substring(0, cuadroTexto.getText().length() - 1);
-            cuadroTexto.setText(p);
-            syntaxErrorOccurred = false; // Restablece la variable de control
-            boton1.setEnabled(true); // Habilita el boton1
-        });
-        
-        boton3.addActionListener((ActionEvent e) -> {
-            String p=cuadroTexto.getText();
-            cuadroTexto.setText(p+"^");
-            syntaxErrorOccurred = false; // Restablece la variable de control
-            boton1.setEnabled(true); // Habilita el boton1
-        });
-        
-        boton4.addActionListener((ActionEvent e) -> {
-            String p=cuadroTexto.getText();
-            cuadroTexto.setText(p+"*");
-            syntaxErrorOccurred = false; // Restablece la variable de control
-            boton1.setEnabled(true); // Habilita el boton1
-        });
-        
-        boton5.addActionListener((ActionEvent e) -> {
-            String p=cuadroTexto.getText();
-            cuadroTexto.setText(p+"7");
-            syntaxErrorOccurred = false; // Restablece la variable de control
-            boton1.setEnabled(true); // Habilita el boton1
-        });
-        
-        boton6.addActionListener((ActionEvent e) -> {
-            String p=cuadroTexto.getText();
-            cuadroTexto.setText(p+"8");
-            syntaxErrorOccurred = false; // Restablece la variable de control
-            boton1.setEnabled(true); // Habilita el boton1
-        });
-        
-        boton7.addActionListener((ActionEvent e) -> {
-            String p=cuadroTexto.getText();
-            cuadroTexto.setText(p+"9");
-            syntaxErrorOccurred = false; // Restablece la variable de control
-            boton1.setEnabled(true); // Habilita el boton1
-        });
-        
-        boton8.addActionListener((ActionEvent e) -> {
-            String p=cuadroTexto.getText();
-            cuadroTexto.setText(p+"/");
-            syntaxErrorOccurred = false; // Restablece la variable de control
-            boton1.setEnabled(true); // Habilita el boton1
-        });
-        
-        boton9.addActionListener((ActionEvent e) -> {
-            String p=cuadroTexto.getText();
-            cuadroTexto.setText(p+"4");
-            syntaxErrorOccurred = false; // Restablece la variable de control
-            boton1.setEnabled(true); // Habilita el boton1
-        });
-        
-        boton10.addActionListener((ActionEvent e) -> {
-            String p=cuadroTexto.getText();
-            cuadroTexto.setText(p+"5");
-            syntaxErrorOccurred = false; // Restablece la variable de control
-            boton1.setEnabled(true); // Habilita el boton1
-        });
-        
-        boton11.addActionListener((ActionEvent e) -> {
-            String p=cuadroTexto.getText();
-            cuadroTexto.setText(p+"6");
-            syntaxErrorOccurred = false; // Restablece la variable de control
-            boton1.setEnabled(true); // Habilita el boton1
-        });
-        
-        boton12.addActionListener((ActionEvent e) -> {
-            String p=cuadroTexto.getText();
-            cuadroTexto.setText(p+"-");
-            syntaxErrorOccurred = false; // Restablece la variable de control
-            boton1.setEnabled(true); // Habilita el boton1
-        });
-        
-        boton13.addActionListener((ActionEvent e) -> {
-            String p=cuadroTexto.getText();
-            cuadroTexto.setText(p+"1");
-            syntaxErrorOccurred = false; // Restablece la variable de control
-            boton1.setEnabled(true); // Habilita el boton1
-        });
-        
-        boton14.addActionListener((ActionEvent e) -> {
-            String p=cuadroTexto.getText();
-            cuadroTexto.setText(p+"2");
-            syntaxErrorOccurred = false; // Restablece la variable de control
-            boton1.setEnabled(true); // Habilita el boton1
-        });
-        
-        boton15.addActionListener((ActionEvent e) -> {
-            String p=cuadroTexto.getText();
-            cuadroTexto.setText(p+"3");
-            syntaxErrorOccurred = false; // Restablece la variable de control
-            boton1.setEnabled(true); // Habilita el boton1
-        });
-        
-        boton16.addActionListener((ActionEvent e) -> {
-            String p=cuadroTexto.getText();
-            cuadroTexto.setText(p+"+");
-            syntaxErrorOccurred = false; // Restablece la variable de control
-            boton1.setEnabled(true); // Habilita el boton1
+        cuadroTexto.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                checkForError();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                checkForError();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                // no es necesario su uso, pero si su implementacion en el codigo
+            }
+
+            private void checkForError() {
+                String texto = cuadroTexto.getText().toLowerCase();
+                if (texto.contains("syntax error")) {
+                    System.out.println("Error.");
+                    boton20.setEnabled(false);
+                }
+            }
         });
     }
 }
