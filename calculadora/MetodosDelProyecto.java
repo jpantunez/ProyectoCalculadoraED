@@ -1,6 +1,7 @@
 package proyectocalculadoraed;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class MetodosDelProyecto {
 
@@ -47,50 +48,74 @@ public class MetodosDelProyecto {
         PilaA<String> postfija = new PilaA(); // Pila de cadenas
         String cadena;
         Character caracter;
+        byte verificacion = 0;
 
         for (int i = 0; i < textoCalcular.length(); i++) { // Verificado con la longitud de la expresion introducida
-            caracter = textoCalcular.charAt(i);
-            // Checa si es un numero u operador
-            if (Character.isDigit(caracter)) { // Si es numero, se agrega directo a la pila
+            caracter = textoCalcular.charAt(i); //caracter en la pos i
+            // Checa si es un numero u operador+
+            if(i==1 && textoCalcular.charAt(i-1)=='-' && '-'==textoCalcular.charAt(i)
+                    ||caracter.equals('-') && textoCalcular.length()-1==i){
+                VistaCalculadora.syntaxErrorOccurred = true;
+            }
+            if(((i==0 || textoCalcular.charAt(i-1)=='+' || textoCalcular.charAt(i-1)=='-'
+                     || textoCalcular.charAt(i-1)=='*'  || textoCalcular.charAt(i-1)=='/'
+                     || textoCalcular.charAt(i-1)=='^'  || textoCalcular.charAt(i-1)=='(') && caracter.equals('-'))){
+                verificacion=1;
+            }
+            else if (Character.isDigit(caracter)) { // Si es numero, se agrega directo a la pila
                 cadena = preparaCadena(textoCalcular, i); // Se utiliza un metodo aparte para generar cadena
-                postfija.push(cadena); // Se agrega a la pila
+                if(verificacion==1){
+                    postfija.push("0");
+                    pila.push('-');
+                    postfija.push(cadena);
+                    verificacion = 0;
+                }
+                else{
+                    postfija.push(cadena); // Se agrega a la pila
+                }
                 i = i + cadena.length() - 1; // Se incrementa el iterador
-            } else {// Caso para cuando no son numeros
+            }
+            else {// Caso para cuando no son numeros
                 // Si es parentesis que abre
-                if (caracter == '(') {
-                    pila.push('(');
-                } else { // Si es parentesis que cierra
-                    if (caracter == ')') {
-                        while (!pila.isEmpty() && pila.peek() != '(') { // Se ejecuta mientras que la pila no este vacia y el tope sea distinto de parentesis que abre
-                            postfija.push(pila.pop() + "");
-                        }
-                        if (pila.peek() == '(')
-                            pila.pop();
-                    } else { // Se utiliza jerarquia (potencia, multiplicacion y division, suma y resta)
-                        // Si es potencia
-                        if (caracter == '^') {
-                            if (!pila.isEmpty())
-                                while (!pila.isEmpty() && pila.peek() != '(' && pila.peek() != '/' && pila.peek() != '*'
-                                        && pila.peek() != '+' && pila.peek() != '-')
-                                    postfija.push(pila.pop() + "");
-                            pila.push(caracter);
-                        } else { // Si es multiplicacion o division
-                            if (caracter == '/' || caracter == '*') {
+                if (verificacion==1){
+                    VistaCalculadora.syntaxErrorOccurred = true;
+                    verificacion=0;
+                }else{
+                    if (caracter == '(') {
+                        pila.push('(');
+                    } else { // Si es parentesis que cierra
+                        if (caracter == ')') {
+                            while (!pila.isEmpty() && pila.peek() != '(') { // Se ejecuta mientras que la pila no este vacia y el tope sea distinto de parentesis que abre
+                                postfija.push(pila.pop() + "");
+                            }
+                            if (pila.peek() == '(')
+                                pila.pop();
+                        } else { // Se utiliza jerarquia (potencia, multiplicacion y division, suma y resta)
+                            // Si es potencia
+                            if (caracter == '^') {
                                 if (!pila.isEmpty())
-                                    while (!pila.isEmpty() && pila.peek() != '(' && pila.peek() != '+'
-                                            && pila.peek() != '-')
+                                    while (!pila.isEmpty() && pila.peek() != '(' && pila.peek() != '/' && pila.peek() != '*'
+                                            && pila.peek() != '+' && pila.peek() != '-')
                                         postfija.push(pila.pop() + "");
                                 pila.push(caracter);
-                            } else { // Si es suma o resta
-                                if (caracter == '+' || caracter == '-') {
+                            } else { // Si es multiplicacion o division
+                                if (caracter == '/' || caracter == '*') {
                                     if (!pila.isEmpty())
-                                        while (!pila.isEmpty() && pila.peek() != '(')
+                                        while (!pila.isEmpty() && pila.peek() != '(' && pila.peek() != '+'
+                                                && pila.peek() != '-')
                                             postfija.push(pila.pop() + "");
                                     pila.push(caracter);
+                                } else { // Si es suma o resta
+                                    if (caracter == '+' || caracter == '-') {
+                                        if (!pila.isEmpty())
+                                            while (!pila.isEmpty() && pila.peek() != '(')
+                                                postfija.push(pila.pop() + "");
+                                        pila.push(caracter);
+                                    }
                                 }
                             }
                         }
-                    }
+                    } 
                 }
             }
         }
@@ -180,5 +205,15 @@ public class MetodosDelProyecto {
         if (!aux.isEmpty()) // Si la pila no esta vacia
             resultado = aux.pop(); // Extraer valor superior
         return resultado; // Se regresa el valor acumulado de la pila
+    }
+    
+    public static void main(String[] args) {
+        Scanner entrada = new Scanner(System.in);
+        String expresion;
+        System.out.println("Ingresa la operacion que deseas que sea resuelta: ");
+        expresion = entrada.next();
+        PilaADT<String> pila = MetodosDelProyecto.convierteInfijaPostfija(expresion);
+        Double resp = MetodosDelProyecto.calculoPostfija(pila);
+        System.out.println("Resultado: "+resp);
     }
 }
