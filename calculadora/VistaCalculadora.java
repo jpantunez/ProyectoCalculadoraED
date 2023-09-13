@@ -96,10 +96,11 @@ public class VistaCalculadora extends JFrame {
             }
         });
         
+        // funcionalidad de los botones
         boton1.addActionListener((ActionEvent e) -> {
             cuadroTexto.setText("");
             syntaxErrorOccurred = false; // Restablece la variable de control
-            boton1.setEnabled(true); // Habilita el boton1
+            boton17.setEnabled(true); // Habilita el boton1
         });
         
         boton2.addActionListener((ActionEvent e) -> {
