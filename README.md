@@ -40,7 +40,7 @@ La interfaz de la Calculadora ED 1.0 es simple y eficiente para realizar cálcul
 
 ## Integrantes del equipo
 
-Los estudiantes que brindaron su apoyo para la realización de este proyecto son:
+Los estudiantes que brindaron su apoyo para la realización de este proyecto fueron:
 
 - Ana Lucía Ladron de Guevara Lalinde
 - Camila Coco Gutierrez Moreno
