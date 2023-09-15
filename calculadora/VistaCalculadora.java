@@ -230,9 +230,9 @@ public class VistaCalculadora extends JFrame {
             }
 
             private void checkForError() {
-                String texto = cuadroTexto.getText().toLowerCase();
-                if (texto.contains("syntax error")) {
-                    System.out.println("Error.");
+                String texto = cuadroTexto.getText();
+                if (texto.contains("Syntax Error")) {
+                    System.out.println("Syntax Error.");
                     boton20.setEnabled(false);
                 }
             }
