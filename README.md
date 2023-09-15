@@ -37,3 +37,12 @@ Para utilizar la calculadora con la interfaz de usuario, sigue estos pasos:
 5. Si deseas realizar un nuevo cálculo, simplemente haz clic en el botón "C" para vaciar el cuadro de texto y luego ingresa una nueva expresión, o bien agrega las operaciones que desees y se agregaran al último resultado.
 
 La interfaz de la Calculadora ED 1.0 es simple y eficiente para realizar cálculos matemáticos utilizando notación infija y postfija. Puedes utilizar esta calculadora para realizar operaciones matemáticas de manera rápida y precisa.
+
+## Integrantes del equipo
+
+- Ana Lucía Ladron de Guevara Lalinde
+- Camila Coco Gutierrez Moreno
+- Luis Enrique Sánchez Cuellar
+- José Pablo Antúnez 
+- Malik Corvera Choi 
+- María Fernanda Cuevas Chavarría
