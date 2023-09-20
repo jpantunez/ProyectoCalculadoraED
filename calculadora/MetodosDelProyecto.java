@@ -1,7 +1,7 @@
 package proyectocalculadoraed;
 
 import java.util.ArrayList;
-import java.util.Scanner;
+// import java.util.Scanner;
 
 public class MetodosDelProyecto {
 
@@ -214,13 +214,13 @@ public class MetodosDelProyecto {
     }
     
     // main para probar el proyecto desde la terminal
-    public static void main(String[] args) {
-        Scanner entrada = new Scanner(System.in);
-        String expresion;
-        System.out.println("Ingresa la operacion que deseas que sea resuelta: ");
-        expresion = entrada.next();
-        PilaADT<String> pila = MetodosDelProyecto.convierteInfijaPostfija(expresion);
-        Double resp = MetodosDelProyecto.calculoPostfija(pila);
-        System.out.println("Resultado: "+resp);
-    }
+    // public static void main(String[] args) {
+    //     Scanner entrada = new Scanner(System.in);
+    //     String expresion;
+    //     System.out.println("Ingresa la operacion que deseas que sea resuelta: ");
+    //     expresion = entrada.next();
+    //     PilaADT<String> pila = MetodosDelProyecto.convierteInfijaPostfija(expresion);
+    //     Double resp = MetodosDelProyecto.calculoPostfija(pila);
+    //     System.out.println("Resultado: "+resp);
+    // }
 }
