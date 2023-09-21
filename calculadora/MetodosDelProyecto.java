@@ -3,6 +3,14 @@ package proyectocalculadoraed;
 import java.util.ArrayList;
 // import java.util.Scanner;
 
+/**
+ * <pre>
+ * Esta es la clase de metodos del proyecto Calculadora, que incluye: convierteInfijaPostfija, calculaPostfija y otros metodos auxiliares (privados)
+ * 
+ * </pre>
+ * @author joseantunez
+ */
+
 public class MetodosDelProyecto {
 
     // 1) Verificar validez
@@ -39,9 +47,23 @@ public class MetodosDelProyecto {
     }
     
     // 2) Convertir de infija a postfija
-    // Este metodo busca convertir de infija a postfija
-    // El usuario ingresa su operacion de manera infija
-    // Devuelve la operacion de manera postfija
+    /** 
+    * 
+    * Este metodo busca convertir una expresion de infija a postfija:
+    * 
+    * El usuario ingresa su operacion de manera infija y el metodo devuelve la operacion de manera postfija
+    * <ul>
+    *       <li>Usa dos pilas: una de caracteres y otra de cadenas
+    *       <li>El metodo consiste en un ciclo FOR que analiza cada caracter (caracter) de la cadena (textoCalcular).
+    *       <li>Dependiendo si es un numero (0-9) o un operador [+, -, /, *, ( o) ] sera agregado a la pila apropiada
+    *       <li>Usa un metodo auxiliar llamado preparaCadena
+    *       <li>Por ultimo, el metodo tambien distingue entre jerarquias de operadores, 
+    *           entre signo negativo y signo de resta y se cerciora que los parentesis esten balanceados
+    * </ul>
+    * 
+    * @param textoCalcular una cadena tipo String que es la expresion que se calculara posteriormente, en este metodo solo se convierte a postfija
+    * @return regresa la pila postfija de tipo String ya ordenada
+    */
     public static PilaADT<String> convierteInfijaPostfija(String textoCalcular) { // Devuelve pila de cadenas
         PilaA<Character> pila = new PilaA(); // Pila de caracteres
         PilaA<String> postfija = new PilaA(); // Pila de cadenas
@@ -157,6 +179,23 @@ public class MetodosDelProyecto {
     }
 
     // 3) Realizar operaciones, desde su forma postfija
+    /**
+     * 
+     * El metodo calculoPostfija realiza las operaciones pertinentes desde su forma postfija.
+     * <ul>
+     *        <li>Para lograrlo usa un ciclo WHILE, que mientras la pila no este vacia clasificara los elementos entre numeros y operadores (con ayuda de los metodos auxiliares esNumero y esOperador)</li>
+     * </ul>
+     * 
+     * Para lograr esto, el metodo utiliza lo siguiente:
+     * <ul>
+     *        <li>Variables auxiliares
+     *        <li>Pila auxiliar de tipo Double
+     *        <li>Metodo auxiliar inviertePila
+     * </ul>
+     * @param pila El metodo recibe una pilaADT de tipo String (que es la pila que fue previamente convertida a postfija)
+     * @return El metodo regresa el resultado acumulado de las operaciones de la pila
+     * @see convierteInfijaPostfija
+     */
     public static double calculoPostfija(PilaADT<String> pila) { // Recibe pila
         double resultado = 0, auxiliar1, auxiliar2, res;
         char operadorChar;

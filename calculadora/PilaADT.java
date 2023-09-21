@@ -1,5 +1,9 @@
 package proyectocalculadoraed;
 
+/**
+ * Interfaz PilaADT programada en clase
+ *
+ */
 public interface PilaADT <T>{
     public void push(T dato);
     public T pop();
