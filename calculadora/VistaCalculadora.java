@@ -11,15 +11,15 @@ import javax.swing.event.DocumentListener;
 public class VistaCalculadora extends JFrame {
     
     // atributos de la GUI
-    protected JPanel panelBase, panelTexto;
-    protected JButton boton1, boton2, boton3, boton4;
-    protected JButton boton5, boton6, boton7, boton8;
-    protected JButton boton9, boton10, boton11, boton12;
-    protected JButton boton13, boton14, boton15, boton16;
-    protected JButton boton17, boton18, boton19, boton20;
-    protected JTextField cuadroTexto;
-    protected Border bordeBase, bordeTexto;
-    public static boolean syntaxErrorOccurred = false;
+    private JPanel panelBase, panelTexto;
+    private JButton boton1, boton2, boton3, boton4;
+    private JButton boton5, boton6, boton7, boton8;
+    private JButton boton9, boton10, boton11, boton12;
+    private JButton boton13, boton14, boton15, boton16;
+    private JButton boton17, boton18, boton19, boton20;
+    private JTextField cuadroTexto;
+    private Border bordeBase, bordeTexto;
+    protected static boolean syntaxErrorOccurred = false;
     
     // constructor de la GUI
     public VistaCalculadora(){
