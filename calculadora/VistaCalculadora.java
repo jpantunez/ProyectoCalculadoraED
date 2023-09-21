@@ -7,10 +7,11 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+
 /**
- *
- * @author joseantunez
+ * La clase VistaCalculadora se extiende de JFrame y sirve para mostrar la interfaz grafica de la calculadora.
  */
+
 public class VistaCalculadora extends JFrame {
     
     // atributos de la GUI
@@ -22,9 +23,17 @@ public class VistaCalculadora extends JFrame {
     private JButton boton17, boton18, boton19, boton20;
     private JTextField cuadroTexto;
     private Border bordeBase, bordeTexto;
+    /**
+    * Indica si se ha producido un error de sintaxis durante el procesamiento de una expresion en la calculadora.
+    * Si el valor es true, indica que se ha detectado un error de sintaxis.
+    * Si el valor es false, indica que no se ha detectado un error de sintaxis.
+    */
     protected static boolean syntaxErrorOccurred = false;
     
     // constructor de la GUI
+    /**
+     * Constructor de la clase VistaCalculadora que inicializa y configura la interfaz gráfica.
+     */
     public VistaCalculadora(){
         this.setTitle("Calculadora ED 1.0");
         this.setSize(300, 350);
@@ -36,6 +45,9 @@ public class VistaCalculadora extends JFrame {
     }
     
     // metodo que brinda la personalizacion de la GUI
+    /**
+     * Realiza la personalizacion de la interfaz grafica de la calculadora.
+     */
     private void personalizacion() {
         // creacion de paneles y asignacion de GridLayout
         panelBase = new JPanel();
@@ -80,6 +92,9 @@ public class VistaCalculadora extends JFrame {
     }
     
     // metodo que brinda la funcionalidad de la GUI
+    /**
+     * Agrega funcionalidad a los botones de la calculadora.
+     */
     private void funcionalidad() {
         
         // funcionalidad de los botones
