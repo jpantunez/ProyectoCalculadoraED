@@ -7,10 +7,7 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-/**
- *
- * @author joseantunez
- */
+
 public class VistaCalculadora extends JFrame {
     
     // atributos de la GUI
