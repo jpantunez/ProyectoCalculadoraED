@@ -1,5 +1,9 @@
 package proyectocalculadoraed;
 
+/**
+ * Clase de PilaA que implementa PilaADT T, programada en clase
+ *
+ */
 public class PilaA <T> implements PilaADT<T>{
     
     private int tope;
