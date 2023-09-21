@@ -1,20 +1,20 @@
 package proyectocalculadoraed;
 
 import java.util.ArrayList;
-// import java.util.Scanner;
 
 /**
- * <pre>
- * Esta es la clase de metodos del proyecto Calculadora, que incluye: convierteInfijaPostfija, calculaPostfija y otros metodos auxiliares (privados)
- * 
- * </pre>
- * @author joseantunez
+ * Clase MetodosDelProyecto, incluye los metodos del proyecto ProyectoCalculadoraED: convierteInfijaPostfija, calculoPostfija y otros metodos auxiliares (privados).
  */
 
 public class MetodosDelProyecto {
 
     // 1) Verificar validez
     // Se verifica si es un operador o es un numero
+    /**
+    * Metodo privado esOperador, sirve para verificar si es un operador el caracter ingresado.
+    * @param caracter tipo String.
+    * @return regresa la variable resp de tipo boolean.
+    */
     private static boolean esOperador(String caracter) { // Se introduce un caracter en forma de cadena
         char operador = caracter.charAt(0);
         boolean resp;
@@ -32,6 +32,11 @@ public class MetodosDelProyecto {
     
     // Este metodo se introduce una cadena y trata de convertirla en numero, si lo
     // logra, boolean es true, si marca false, es porque no pudo convertirla
+    /**
+    * Metodo privado esNumero, sirve para verificar si es un numero el caracter ingresado.
+    * @param caracter tipo String.
+    * @return regresa la variable resp de tipo boolean.
+    */
     private static boolean esNumero(String cadena) { // Se introduce una cadena
         boolean resp;
         resp = false;
@@ -48,21 +53,20 @@ public class MetodosDelProyecto {
     
     // 2) Convertir de infija a postfija
     /** 
+    * Metodo publico convierteInfijaPostfija busca convertir una expresion de infija a postfija:
     * 
-    * Este metodo busca convertir una expresion de infija a postfija:
-    * 
-    * El usuario ingresa su operacion de manera infija y el metodo devuelve la operacion de manera postfija
+    * El usuario ingresa su operacion de manera infija y el metodo devuelve la operacion de manera postfija.
     * <ul>
     *       <li>Usa dos pilas: una de caracteres y otra de cadenas
     *       <li>El metodo consiste en un ciclo FOR que analiza cada caracter (caracter) de la cadena (textoCalcular).
-    *       <li>Dependiendo si es un numero (0-9) o un operador [+, -, /, *, ( o) ] sera agregado a la pila apropiada
+    *       <li>Dependiendo si es un numero (0-9) o un operador [+, -, /, *, (), ^] sera agregado a la pila apropiada
     *       <li>Usa un metodo auxiliar llamado preparaCadena
     *       <li>Por ultimo, el metodo tambien distingue entre jerarquias de operadores, 
     *           entre signo negativo y signo de resta y se cerciora que los parentesis esten balanceados
     * </ul>
     * 
-    * @param textoCalcular una cadena tipo String que es la expresion que se calculara posteriormente, en este metodo solo se convierte a postfija
-    * @return regresa la pila postfija de tipo String ya ordenada
+    * @param textoCalcular tipo String, es la expresion que se calculara posteriormente. En este metodo solo se convierte a postfija.
+    * @return regresa la pila postfija de tipo String ya ordenada.
     */
     public static PilaADT<String> convierteInfijaPostfija(String textoCalcular) { // Devuelve pila de cadenas
         PilaA<Character> pila = new PilaA(); // Pila de caracteres
@@ -156,6 +160,12 @@ public class MetodosDelProyecto {
     }
     
     // Metodo para generar cadena
+    /**
+    * Metodo privado preparaCadena, sirve para preparar la cadena para su funcionamiento en el metodo convierteInfijaPostfija.
+    * @param textoCalcular tipo String.
+    * @param i, tipo int.
+    * @return regresa la variable cadena de tipo String.
+    */
     private static String preparaCadena(String textoCalcular, int i) { // Recibe cadena y entero para ver donde empieza
         String cadena = textoCalcular.charAt(i) + "";
         // No excederse del limite original, verifica si es punto decimal o digito, si se cumple es parte de subcadena a generar
@@ -167,6 +177,10 @@ public class MetodosDelProyecto {
     }
     
     // Metodo para invertir una pila
+    /**
+    * Metodo privado inviertePila, sirve para invertir la pila.
+    * @param pila tipo PilaADT del tipo T.
+    */
     private static <T> void inviertePila(PilaADT<T> pila) {
         ArrayList<T> arregloDinamico = new ArrayList();
 
@@ -180,20 +194,18 @@ public class MetodosDelProyecto {
 
     // 3) Realizar operaciones, desde su forma postfija
     /**
-     * 
-     * El metodo calculoPostfija realiza las operaciones pertinentes desde su forma postfija.
+     * Metodo publico calculoPostfija realiza las operaciones pertinentes desde su forma postfija.
      * <ul>
-     *        <li>Para lograrlo usa un ciclo WHILE, que mientras la pila no este vacia clasificara los elementos entre numeros y operadores (con ayuda de los metodos auxiliares esNumero y esOperador)</li>
+     *        <li>Para lograrlo usa un ciclo WHILE, que, mientras la pila no este vacia, clasificara los elementos entre numeros y operadores (con ayuda de los metodos auxiliares esNumero y esOperador).</li>
      * </ul>
-     * 
      * Para lograr esto, el metodo utiliza lo siguiente:
      * <ul>
-     *        <li>Variables auxiliares
-     *        <li>Pila auxiliar de tipo Double
-     *        <li>Metodo auxiliar inviertePila
+     *        <li>Variables auxiliares.
+     *        <li>Pila auxiliar de tipo Double.
+     *        <li>Metodo auxiliar inviertePila.
      * </ul>
-     * @param pila El metodo recibe una pilaADT de tipo String (que es la pila que fue previamente convertida a postfija)
-     * @return El metodo regresa el resultado acumulado de las operaciones de la pila
+     * @param pila El metodo recibe una PilaADT de tipo String (que es la pila que fue previamente convertida a postfija).
+     * @return El metodo regresa el resultado acumulado de las operaciones de la pila.
      * @see convierteInfijaPostfija
      */
     public static double calculoPostfija(PilaADT<String> pila) { // Recibe pila
@@ -251,15 +263,4 @@ public class MetodosDelProyecto {
         }    
         return resultado; // Se regresa el valor acumulado de la pila
     }
-    
-    // main para probar el proyecto desde la terminal
-    // public static void main(String[] args) {
-    //     Scanner entrada = new Scanner(System.in);
-    //     String expresion;
-    //     System.out.println("Ingresa la operacion que deseas que sea resuelta: ");
-    //     expresion = entrada.next();
-    //     PilaADT<String> pila = MetodosDelProyecto.convierteInfijaPostfija(expresion);
-    //     Double resp = MetodosDelProyecto.calculoPostfija(pila);
-    //     System.out.println("Resultado: "+resp);
-    // }
 }
